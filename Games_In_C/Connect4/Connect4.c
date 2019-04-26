@@ -82,27 +82,28 @@ int printBoard()
 //Returns an int between 1 and 7 based on what the player's move was. Also checks if it is a valid move
 int playerTurn()
 {
-  puts("Where do you want to play?");
-  input = 9999;
-  while (getchar() != '\n' && (input + 48 <= '1' && input >= '7'))
-    ;
-  if (move())
-    return 0;
-  return 4234;
+  input = -3;
+  while (!move())
+    puts("Invalid move");  
+  return 0;
 }
 
 //Check the move and add it to the board
 int move()
 {
-  for (i = 0; i < HEIGHT; ++i)
+  puts("Where do you want to play?");
+  while(!(input > '0' && input <= '7'))
+    input = getchar();
+  for (i = 0; i <= HEIGHT; ++i)
   {
     //Check if there is a blank beneath this space
     if (board[input][i] == 0)
       board[input][i] = chcurrentPlayerTurn;
-    else if (i > HEIGHT)
-      return 0;
   }
-  return 1;
+  if(i > HEIGHT)
+    return 0;
+  else
+    return 1;
 }
 
 //Reurns 1 for player X (one), 2 for player O (two), 0 for draw, and -1 when nobody has won yet
