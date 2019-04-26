@@ -1,0 +1,27 @@
+1. Write a program that can convert between miles and kilometers.  First ask whether converting miles to kilometers or vice versa, and then ask for how many mile or kilometers.  Finally output the conversion. Make sure it estimates decimal point numbers and prints out with a precision of 5.  1 mile is approximately 1.60934 kilometers. Name the program mile_km_converter.c
+
+2. Make a number guessing game.  The computer should choose a random number between 1 and 10 and store it in a variable, then ask the user to input a number guessing what it selected.  If they guessed too high tell them that, if too low tell them that, and if correct you can exit telling them how many guesses it took them. Loop until they guess correctly on the same number.  Name the program numberguess.c
+
+3. Write a program that can accept any 2 digit number from the user and print out the reversal of the number.  Name the program reverse2.c
+
+4. Make a copy of the program above, only expand it to reverse a 3 digit number.  Name the program reverse3.c
+
+Challenge:
+5. Reverse any number
+
+Competencies:
+
+    - Code Readability - 3
+    - Commenting Code - 3
+    - File Headers - 3
+    - Floating Point Data Types - 3
+    - Integral Data Types - 3
+    - Conditionals - 3
+    - Data Input - 3
+    - Data Output - 3
+    - Iteration - 3
+    - Expressions and Operators - 3
+    - If, Else if, and Else Statements - 3
+    - Variables - 3
+
+  Total: 36

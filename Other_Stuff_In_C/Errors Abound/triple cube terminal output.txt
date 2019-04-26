@@ -1,0 +1,41 @@
+Y:\DigiPen-stuff\Errors Abound>gcc -Wall -Wextra -O -ansi -pedantic -o tripleCube.exe tripleCube.c main.c
+tripleCube.c: In function 'print_cubes':
+tripleCube.c:15:2: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+  for( i = 100 ; i <= 999 ; i++);
+  ^~~
+tripleCube.c:16:2: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
+  {
+  ^
+tripleCube.c:38:6: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if(cubesum = i)
+      ^~~~~~~
+tripleCube.c: In function 'print_pythagorean_triples':
+tripleCube.c:50:6: error: 'i' undeclared (first use in this function)
+  for(i = low; i < high; i++)
+      ^
+tripleCube.c:50:6: note: each undeclared identifier is reported only once for each function it appears in
+tripleCube.c:52:7: error: 'j' undeclared (first use in this function)
+   for(j = i; j < high; j++)
+       ^
+tripleCube.c:54:8: error: 'k' undeclared (first use in this function)
+    for(k = j; k < high ; k++)
+        ^
+tripleCube.c:61:5: error: expected ';' before '}' token
+     }
+     ^
+tripleCube.c:65:9: warning: 'return' with a value, in function returning void
+  return totalTriples;
+         ^~~~~~~~~~~~
+tripleCube.c:46:6: note: declared here
+ void print_pythagorean_triples(int low, int high)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+main.c: In function 'main':
+main.c:19:5: error: unterminated comment
+     /* but not including 100  [1, 100)
+     ^
+main.c:16:3: error: expected declaration or statement at end of input
+   print_cubes();
+   ^~~~~~~~~~~
+main.c:16:3: warning: control reaches end of non-void function [-Wreturn-type]
+   print_cubes();
+   ^~~~~~~~~~~

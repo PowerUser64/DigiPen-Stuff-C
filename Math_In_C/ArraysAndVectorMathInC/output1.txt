@@ -1,0 +1,26 @@
+Array a:
+    1    2    3    4    5    6    7    8
+Array a reversed:
+    8    7    6    5    4    3    2    1
+
+Array b:
+    4    6    8    2    4    3    5    8
+Array c (sum of array a and array b):
+   12   13   14    7    8    6    7    9
+
+All values of c multiplied by 10:
+  120  130  140   70   80   60   70   90
+
+Array v1:    1    2    3
+Array v2:    3    4    7
+The dot product of v1 * v2 is 32
+
+Array v1:    1    2    3
+Array v2:    3    4    7
+The cross product of v1 x v2 is:    2    2   -2
+
+Array a:    2   -1   -1   -5    3    5    2    4   -4   -5
+Array b:    5   -4    5   -2   -1    2    2    3   -1    5
+The dot product of a * b is 21
+The dot product of a * b is -830
+
