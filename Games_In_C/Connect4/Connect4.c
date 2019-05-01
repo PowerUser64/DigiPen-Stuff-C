@@ -83,27 +83,31 @@ int printBoard()
 int playerTurn()
 {
   input = -3;
-  while (!move())
-    puts("Invalid move");  
+  while (move() == 0)
+    puts("Invalid move");
   return 0;
 }
 
-//Check the move and add it to the board
 int move()
 {
+  int pos = 0;
   puts("Where do you want to play?");
-  while(!(input > '0' && input <= '7'))
+  input = getchar();
+  while (!(input > '0' && input <= '7'))
     input = getchar();
-  for (i = 0; i <= HEIGHT; ++i)
+
+  pos = input - '1';
+  for (i = 0; i < HEIGHT; ++i)
   {
     //Check if there is a blank beneath this space
-    if (board[input][i] == 0)
-      board[input][i] = chcurrentPlayerTurn;
+    if (board[pos][i] == ' ')
+    {
+      puts("O");
+      board[pos][i] = chcurrentPlayerTurn;
+      return 1;
+    }
   }
-  if(i > HEIGHT)
-    return 0;
-  else
-    return 1;
+  return 0;
 }
 
 //Reurns 1 for player X (one), 2 for player O (two), 0 for draw, and -1 when nobody has won yet
