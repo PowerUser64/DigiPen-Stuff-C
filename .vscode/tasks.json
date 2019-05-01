@@ -9,9 +9,10 @@
             "command": "gcc",
             "args": [
                 "-Wall",
-                "-pedantic",
-                "-g",
+                "-Wextra",
                 "-O",
+                "-g",
+                "-pedantic",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe",
                 "${relativeFile}",
