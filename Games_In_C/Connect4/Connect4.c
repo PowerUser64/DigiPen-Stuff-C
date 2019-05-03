@@ -35,8 +35,6 @@ int Vertical();
 int DiagonalRight(); /* (\) */
 int DiagonalLeft();  /* (/) */
 
-//Counters
-int i, j, x, y;
 //player input
 int input;
 //player input row - set by move() and used to process in whoWon()
@@ -70,6 +68,9 @@ int gameloop()
 //prints the board (duh)
 int printBoard()
 {
+  //Counters
+  int i, j;
+
   for (i = 48; i - 48 < WIDTH; putchar(++i), putchar(' '))
     ;
   putchar('\n');
@@ -90,6 +91,9 @@ int playerTurn()
 
 int move()
 {
+  //Counters
+  int i;
+
   int pos = 0;
   puts("Where do you want to play?");
   input = getchar();
@@ -121,14 +125,17 @@ int whoWon()
 /* Checks what it says for 2 in a rows */
 int Horizontal()
 {
+  //Counters
+  int x, y;
+
   int count = 0;
   /* Check for 4 plays in a row */
   for (y = 0; y < HEIGHT; ++y)
-    for (count = 0, i = 1, x = 0; x + 2 < WIDTH; ++x)
+    for (count = 0, x = 0; x + 1 < WIDTH; ++x)
     {
       if (board[x][y] == board[x + 1][y] && (board[x][y] == 'O' || board[x][y] == 'X'))
         ++count;
-      if (count == 4)
+      if (count == 3)
         return 1;
     }
   return 0;
@@ -137,14 +144,17 @@ int Horizontal()
 /* Checks what it says for 2 in a rows */
 int Vertical()
 {
+  //Counters
+  int x, y;
+
   int count = 0;
   /* Check for 4 plays in a row */
   for (x = 0; x < WIDTH; ++x)
-    for (count = 0, y = 0; y + 2 < HEIGHT; ++y)
+    for (count = 0, y = 1; y < HEIGHT; ++y)
     {
-      if (board[x][y] == board[x + 1][y] && (board[x][y] == 'O' || board[x][y] == 'X'))
+      if (board[x][y] == board[x][y - 1] && (board[x][y] == 'O' || board[x][y] == 'X'))
         ++count;
-      if (count == 4)
+      if (count == 3)
         return 1;
     }
   return 0;
@@ -152,15 +162,18 @@ int Vertical()
 /* Checks what it says for 2 in a rows */
 int DiagonalRight()
 {
+  //Counters
+  int i, x, y;
+
   int count = 0;
   /* Check for 4 plays in a row */
   for (x = 0; x < WIDTH; ++x)
     for (y = 0; y < HEIGHT; ++y)
-      for (count = 0, j = 0, i = 1; i + 2 < HEIGHT; ++i)
+      for (count = 0, i = 1; i < 4 && x + i < WIDTH && y + i < HEIGHT; ++i)
       {
         if (board[x][y] == board[x + i][y + i] && (board[x][y] == 'O' || board[x][y] == 'X'))
           ++count;
-        if (count == 4)
+        if (count == 3)
           return 1;
       }
   return 0;
@@ -169,16 +182,20 @@ int DiagonalRight()
 /* Checks what it says for 2 in a rows */
 int DiagonalLeft()
 {
+  //Counters
+  int i, x, y;
+
   int count = 0;
   /* Check for 4 plays in a row */
-  for (x = 0; x < WIDTH; ++x)
-    for (count = 0, y = 0; y < HEIGHT; ++y)
-    {
-      if (board[x][y] == board[(x + 1) % 4][(y + 1) % 4] && board[x][y] == board[(x + 1 + 1) % 4][(y - 1 - 1) % 4] && board[x][y] == board[(x + 1 + 2) % 4][(y - 1 - 2) % 4] && board[x][y] == board[(x + 1 + 3) % 4][(y - 1 - 3) % 4] && (board[x][y] == 'O' || board[x][y] == 'X'))
-        ++count;
-      if (count == 4)
-        return 1;
-    }
+  for (x = WIDTH - 1; x >= 0; --x)
+    for (y = 0; y < HEIGHT; ++y)
+      for (count = 0, i = 1; i < 4 && x - i < WIDTH && y + i < HEIGHT; ++i)
+      {
+        if (board[x][y] == board[x - i][y + i] && (board[x][y] == 'O' || board[x][y] == 'X'))
+          ++count;
+        if (count == 3)
+          return 1;
+      }
   return 0;
 }
 
@@ -191,6 +208,9 @@ int main(void)
   //keep going until there is a winner
   while (gameloop() == -1)
     ;
-  printf("Player %c wins!", chcurrentPlayerTurn);
-  return 0;
+  printf("Player %c wins!\nPress enter to exit.", chcurrentPlayerTurn);
+  while (getchar() != '\n')
+    ;
+  putchar('\n');
+  return currentPlayerTurn;
 }
