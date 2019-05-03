@@ -208,6 +208,7 @@ int main(void)
   //keep going until there is a winner
   while (gameloop() == -1)
     ;
+  printBoard();
   printf("Player %c wins!\nPress enter to exit.", chcurrentPlayerTurn);
   while (getchar() != '\n')
     ;
