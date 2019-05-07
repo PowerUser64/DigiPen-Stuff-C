@@ -42,12 +42,6 @@
                     "ignoreFailures": true
                 }
             ]
-        },
-        {
-            "name": "Launch <file>.html",
-            "type": "chrome",
-            "request": "launch",
-            "file": "file://${fileDirname}/${fileBasenameNoExtension}.html"
         }
     ]
 }
