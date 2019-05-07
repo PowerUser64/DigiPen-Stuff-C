@@ -20,8 +20,6 @@ int power(int base, int exp)
 
 int main(void)
 {
-    /*Counters*/
-    int i, j;
     int input;
     int *h;
     char unit;
@@ -67,8 +65,10 @@ int main(void)
             free(h);
             putchar('\n');
             puts("Operation canceled\nPress enter to exit");
-            while(getchar() != '\n');
+            while (getchar() != '\n')
+                ;
             return 0;
         }
         return -3;
     }
+}
