@@ -1,3 +1,5 @@
+
+
 struct Node
 {
     int number;        /* data portion    */

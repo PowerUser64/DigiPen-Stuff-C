@@ -20,7 +20,7 @@ void add_front(struct Node **list, int value)
     struct Node *pNode = (struct Node *)malloc(sizeof(struct Node));
     pNode->number = value;
     pNode->next = *list;
-    *list = pNode;    
+    *list = pNode;
     return;
 }
 
@@ -29,7 +29,7 @@ void free_list(struct Node *list)
 {
     while (list)
     {
-        struct NODE *temp = list->next;
+        struct Node *temp = list->next;
         free(list);
         list = temp;
     }
@@ -40,6 +40,12 @@ void free_list(struct Node *list)
 /* Given a list, print the value of each node. The format specifier for the printf function is "%3i" */
 void print_list(const struct Node *list)
 {
+    while (list)
+    {
+        printf("%3i", list->number);
+        list = list->next;
+    }
+    putchar('\n');
     return;
 }
 
