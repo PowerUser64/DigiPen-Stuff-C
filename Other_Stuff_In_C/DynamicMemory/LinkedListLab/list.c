@@ -52,7 +52,15 @@ void print_list(const struct Node *list)
 /* Given a list, count the number of nodes in the list and return that value */
 int size_list(const struct Node *list)
 {
-    return 0;
+    int i;
+    while (list)
+    {
+        printf("%3i", list->number);
+        ++i;
+        list = list->next;
+    }
+    putchar('\n');
+    return i;
 }
 
 /* Given a list, add up all of the values in the nodes and return that value */
