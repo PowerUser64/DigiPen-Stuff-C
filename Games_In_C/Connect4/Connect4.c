@@ -34,6 +34,7 @@ int Horizontal();
 int Vertical();
 int DiagonalRight(); /* (\) */
 int DiagonalLeft();  /* (/) */
+/*int tie();           // Checks if the top spaces are all occupied, hence a tie */
 
 //player input
 int input;
@@ -56,6 +57,8 @@ int gameloop()
 
   printBoard();
   playerTurn();
+  /*if (tie())
+    return 1;*/
   return whoWon();
 }
 //                                                  1 2 3 4 5 6 7
@@ -65,6 +68,7 @@ int gameloop()
 //
 //
 //
+
 //prints the board (duh)
 int printBoard()
 {
@@ -199,6 +203,20 @@ int DiagonalLeft()
   return 0;
 }
 
+/* int tie() // Checks if the top spaces are all occupied, hence a tie */ 
+/*
+{
+  int i, j;
+  for (i = 0; i < WIDTH; ++i)
+  {
+    if (board[i][HEIGHT - 1] != ' ')
+      j = 1;
+    else
+      j = 0;
+  }
+  return j;
+}
+*/
 int main(void)
 {
   puts("Welcome to Connect 4!\nPress enter to start");
@@ -209,7 +227,10 @@ int main(void)
   while (gameloop() == -1)
     ;
   printBoard();
-  printf("Player %c wins!\nPress enter to exit.", chcurrentPlayerTurn);
+  printf("Player %c wins!\n", chcurrentPlayerTurn);
+  /*if (tie())
+    printf("Oh wait, it's a tie\n");*/
+  puts("Press enter to exit");
   while (getchar() != '\n')
     ;
   putchar('\n');
