@@ -14,7 +14,7 @@
                 "-pedantic",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe",
-                "${fileDirname}/main.c",
+                //"${fileDirname}/main.c",
                 "${relativeFile}",
             ],
             "problemMatcher": {
