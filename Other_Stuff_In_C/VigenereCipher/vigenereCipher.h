@@ -4,8 +4,6 @@ By:Ryan Scheppler
 Date: 1/15/18
 Brief: the header file to use with vigenereCipher.c
 ****************/
-#include <stdio.h>
-#include <string.h>
 
 enum CODE_METHOD {ENCODE, DECODE};
 
