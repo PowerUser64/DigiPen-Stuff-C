@@ -1,7 +1,18 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2019 fdas
+Copyright (c) 2019 Blakely North and Teachers
+
+In plain English:
+
+1. I don't promise that this software works. (But if you find any bugs,
+please let me know!)
+2. You can use this software for whatever you want. You don't have to pay me.
+3. You can pretend that you wrote this software. If you use it in a
+program, you must acknowledge somewhere in your documentation that
+you've used the my code. 
+
+In legalese:
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
