@@ -66,6 +66,12 @@ int size_list(const struct Node *list)
 /* Given a list, add up all of the values in the nodes and return that value */
 int sum_list(const struct Node *list)
 {
+    int i = 0;
+    while(list)
+    {
+        i += list->number;
+        list = list->next;
+    }
     return 0;
 }
 
