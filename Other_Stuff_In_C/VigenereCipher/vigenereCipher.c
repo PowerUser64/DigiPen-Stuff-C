@@ -9,7 +9,14 @@ gcc -O -Wall -Wextra -ansi -pedantic -o vcipher vigenereCipher.c main.c
 
 void vigenere(unsigned char *string, unsigned char *key, enum CODE_METHOD method, int passes)
 {
-	
+	if(CODE_METHOD == ENCODE)
+	{
+		// Encode
+	}
+	else
+	{
+		// Decode
+	}
 	
 	return;
 }
