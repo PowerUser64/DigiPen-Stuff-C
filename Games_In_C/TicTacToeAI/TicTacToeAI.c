@@ -28,7 +28,7 @@ int AIScan();
 int Horizontal();
 int Vertical();
 int DiagonalRight(); /* (\) */
-int DiagonalLeft(); /* (/) */
+int DiagonalLeft();  /* (/) */
 int pinputReset();
 /* The game board. -1 is not occupied, 0 is O, 1 is X */
 int board[3][3] = {{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
@@ -186,8 +186,8 @@ int AITurn()
 	/* check all possible plays */
 	AIScan();
 	/* Search pinput for the highest score */
-	for (i = 0; i < 8; i++, comp++)
-		if(*biggest < *comp)
+	for (i = 0; i < 9; i++, comp++)
+		if (*biggest < *comp)
 			biggest = comp;
 	return (biggest - &pinput[0][0]);
 }
@@ -226,14 +226,15 @@ int Vertical()
 {
 	int i = 0, j = 0;
 	for (i = 0; i < 3; i++)
+	{
 		for (j = 0; j < 3; j++)
 		{
 			/* Check for 2 plays in a row */
-			if (((board[j][(i + 1) % 3] == 1 && /**/ (board[j][(i + 1) % 3] == /**/ board[j][(i + 2) % 3])) && /**/ board[j][(i + 3) % 3] == -1) /****/)
-				pinput[j][(i + 2) % 3] += 1000;
+			if (((board[j][(i + 1) % 3] == 1 && /**/ (board[j][(i + 1) % 3] == /**/ board[j][(i + 2) % 3])) && /**/ board[j][(i + 3) % 3] == -1) /**/)
+				pinput[j][(i + 3) % 3] += 500;
 			/* same check, but for player's moves */
 			if ((((board[j][(i + 1) % 3] == 0 && /**/ (board[j][(i + 1) % 3] == /**/ board[j][(i + 2) % 3])) && /**/ board[j][(i + 3) % 3] == -1)))
-				pinput[j][(i + 1) % 3]++, pinput[j][(i + 2) % 3]++;
+				pinput[j][(i + 3) % 3] += 1000;
 
 			/* Check for 2 plays in a row */
 			if (((board[j][(i + 1) % 3] == -1 && /**/ (board[j][(i + 1) % 3] == /**/ board[j][(i + 2) % 3])) && /**/ board[j][(i + 3) % 3] == 1) /****/)
@@ -241,11 +242,11 @@ int Vertical()
 			/* same check, but for player's moves */
 			if (((board[j][(i + 1) % 3] == -1 && /**/ (board[j][(i + 1) % 3] == /**/ board[j][(i + 2) % 3])) && /**/ board[j][(i + 3) % 3] == 0) /****/)
 				pinput[j][(i + 1) % 3] += 2, pinput[j][(i + 2) % 3] += 2;
-
-			/*check for 3 in a row blanks*/
-			if (((board[j][(i + 1) % 3] == -1 && /**/ (board[j][(i + 1) % 3] == /**/ board[j][(i + 2) % 3])) && /**/ board[j][(i + 3) % 3] == -1) /****/)
-				pinput[j][(i + 1) % 3]++, pinput[j][(i + 2) % 3]++, pinput[j][(i + 3) % 3]++;
 		}
+		/*check for 3 in a row blanks*/
+		if (((board[0][i] == -1 && /**/ (board[0][i] == /**/ board[1][i])) && /**/ board[2][i] == -1) /****/)
+			pinput[0][i]++, pinput[1][i]++, pinput[2][i]++;
+	}
 	return 0;
 }
 /* Checks what it says for 2 in a rows */
@@ -254,25 +255,25 @@ int DiagonalRight()
 	int i = 0, j = 0;
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
-			{
-				/* Check for 2 plays in a row */
-				if (((board[(i + 1) % 3][(j + 1) % 3] == 1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == -1) /****/ )
-					pinput[(i + 3) % 3][(j + 2) % 3] += 1000;
-				/* same check, but for player's moves */
-				if (((board[(i + 1) % 3][(j + 1) % 3] == 0 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == -1) /****/)
-					pinput[(i + 3) % 3][(j + 2) % 3] += 10;
+		{
+			/* Check for 2 plays in a row */
+			if (((board[(i + 1) % 3][(j + 1) % 3] == 1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == -1) /****/)
+				pinput[(i + 3) % 3][(j + 2) % 3] += 1000;
+			/* same check, but for player's moves */
+			if (((board[(i + 1) % 3][(j + 1) % 3] == 0 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == -1) /****/)
+				pinput[(i + 3) % 3][(j + 2) % 3] += 10;
 
-				/* Check for a move with 2 blanks around it */
-				if ((((board[(i + 1) % 3][(j + 1) % 3] == -1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == 1)))
-					pinput[(i + 1) % 3][(j + 1) % 3] += 4, pinput[(i + 2) % 3][(j + 3) % 3] += 4;
-				/* same check, but for player's moves */
-				if ((((board[(i + 1) % 3][(j + 1) % 3] == -1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == 0)))
-					pinput[(i + 1) % 3][(j + 1) % 3] += 2, pinput[(i + 2) % 3][(j + 3) % 3] += 2;
+			/* Check for a move with 2 blanks around it */
+			if ((((board[(i + 1) % 3][(j + 1) % 3] == -1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == 1)))
+				pinput[(i + 1) % 3][(j + 1) % 3] += 4, pinput[(i + 2) % 3][(j + 3) % 3] += 4;
+			/* same check, but for player's moves */
+			if ((((board[(i + 1) % 3][(j + 1) % 3] == -1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == 0)))
+				pinput[(i + 1) % 3][(j + 1) % 3] += 2, pinput[(i + 2) % 3][(j + 3) % 3] += 2;
 
-				/*check for 3 in a row blanks*/
-				if ((((board[(i + 1) % 3][(j + 1) % 3] == -1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == -1)))
-					pinput[(i + 1) % 3][(j + 1) % 3]++, pinput[(i + 2) % 3][(j + 3) % 3]++, pinput[(i + 3) % 3][(j + 2) % 3]++;
-			}
+			/*check for 3 in a row blanks*/
+			if ((((board[(i + 1) % 3][(j + 1) % 3] == -1 && /**/ (board[(i + 1) % 3][(j + 1) % 3] == /**/ board[(i + 2) % 3][(j + 3) % 3])) && /**/ board[(i + 3) % 3][(j + 2) % 3] == -1)))
+				pinput[(i + 1) % 3][(j + 1) % 3]++, pinput[(i + 2) % 3][(j + 3) % 3]++, pinput[(i + 3) % 3][(j + 2) % 3]++;
+		}
 
 	return 0;
 }
