@@ -46,7 +46,6 @@ AI has not played yet  | + 1 to all 3 in a row blanks
 
 /* board pointer */
 int *brdptr = &board[0][0];
-int i = 0, j = 0;
 int main(void)
 {
 	/* Keeps track of who's turn it is. 0 means it's not the player's turn (AI's turn). 1 Means it is the player's turn (not the AI's turn).*/
@@ -81,7 +80,7 @@ int main(void)
 			continue;
 		}
 
-		playerTurn = !playerTurn;
+		playerTurn = !playerTurn; 
 		gamestate = CheckGrid();
 	}
 	/* Who's the winner? */
@@ -163,7 +162,7 @@ void printBoard()
 
 int pinputReset()
 {
-	int* p = &pinput[0][0];
+	int* p = &pinput[0][0], i;
 	for(i = 0; i < 9; i++, p++)
 		*p = 0;
 	return 0;
@@ -181,7 +180,7 @@ int AIScan()
 int AITurn()
 {
 	/* Current biggest num's location in the array and the compairison's location */
-	int *biggest = &pinput[0][0], *comp = &pinput[0][0];
+	int *biggest = &pinput[0][0], *comp = &pinput[0][0], i;
 	/* Reset pinput */
 	pinputReset();
 	/* check all possible plays */
@@ -196,6 +195,7 @@ int AITurn()
 /* Checks what it says for 2 in a rows */
 int Horizontal()
 {
+	int i = 0, j = 0;
 	/*horizontal loop through all on one row*/
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
@@ -224,6 +224,7 @@ int Horizontal()
 /* Checks what it says for 2 in a rows */
 int Vertical()
 {
+	int i = 0, j = 0;
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 		{
@@ -250,6 +251,7 @@ int Vertical()
 /* Checks what it says for 2 in a rows */
 int DiagonalRight()
 {
+	int i = 0, j = 0;
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 			{
@@ -278,6 +280,7 @@ int DiagonalRight()
 /* Checks what it says for 2 in a rows */
 int DiagonalLeft()
 {
+	int i = 0, j = 0;
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 3; j++)
 		{
